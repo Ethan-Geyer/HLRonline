@@ -1,0 +1,36 @@
+/* Import the Roboto, Roboto Condensed, and Roboto Slab fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+/* Set the background color to a gradient from dark green to light green */
+body {
+    background: linear-gradient(to bottom, darkgreen, lightgreen);
+    color: white; /* Set the text color to black */
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+}
+
+/* Add a black banner at the top of the page */
+.banner {
+    background-color: black;
+    width: 100%; /* Make the banner span the full width of the page */
+    height: 50px; /* Set the height of the banner */
+    position: fixed; /* Fix the position of the banner */
+    top: 0; /* Position the banner at the top of the page */
+    display: flex; /* Use flexbox for easy centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-family: 'Roboto Condensed', sans-serif; /* Use the Roboto Condensed font */
+    color: white; /* Set the color of the text to white */
+}
+
+/* Use the Roboto Slab font for paragraphs */
+p {
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Make the user list display in a grid */
+#user-list-1, #user-list-2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Create five columns */
+    gap: 10px;
+    padding-top: 60px; /* Add padding to the top to avoid overlap with the banner */
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Directory</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner">
+        <h1>Company Directory</h1>
+    </div>
+    <ul id="user-list-1">
+        <!-- Users 1-10 will be populated here -->
+    </ul>
+    <ul id="user-list-2">
+        <!-- Users 11-20 will be populated here -->
+    </ul>
+
+    <p>Select the user you want to view from above. You will be taken to their page, where you can find their contact info, department, job title, and more! </p>
+
+    
+    <p>Below is the ‘Update Your Information’ form. Please fill out the form and hit submit. Your information will be updated within 1-2 business days. </p>
+
+    <h2>Update Your Information</h2>
+    <form id="update-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone"><br>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="image">Image URL:</label><br>
+        <input type="text" id="image" name="image"><br>
+        <input type="submit" value="Update">
+    </form>
+
+    <!-- Add your buttons here -->
+    <div class="footer-buttons">
+        <button onclick="location.href='about.html'">About</button>
+        <button onclick="location.href='join.html'">Join the team</button>
+        <button onclick="location.href='more.html'">More</button>
+    </div>
+
+    <script>
+     
+        var users = [
+            { name: 'User 1', page: 'Users/user1.html', image: 'Resources/user1.png' },
+            { name: 'User 2', page: 'Users/user2.html', image: 'Resources/user2.png' },
+            { name: 'User 3', page: 'Users/user3.html', image: 'Resources/user3.png' },
+            { name: 'User 4', page: 'Users/user4.html', image: 'Resources/user4.png' },
+            { name: 'User 5', page: 'Users/user5.html', image: 'Resources/user5.png' },
+            { name: 'User 6', page: 'Users/user6.html', image: 'Resources/user1.png' },
+            { name: 'User 7', page: 'Users/user7.html', image: 'Resources/user2.png' },
+            { name: 'User 8', page: 'Users/user8.html', image: 'Resources/user3.png' },
+            { name: 'User 9', page: 'Users/user9.html', image: 'Resources/user4.png' },
+            { name: 'User 10', page: 'Users/user10.html', image: 'Resources/user5.png' },
+            { name: 'User 11', page: 'Users/user11.html', image: 'Resources/user1.png' },
+            { name: 'User 12', page: 'Users/user12.html', image: 'Resources/user2.png' },
+            { name: 'User 13', page: 'Users/user13.html', image: 'Resources/user3.png' },
+            { name: 'User 14', page: 'Users/user14.html', image: 'Resources/user4.png' },
+            { name: 'User 15', page: 'Users/user15.html', image: 'Resources/user5.png' },
+            { name: 'User 16', page: 'Users/user16.html', image: 'Resources/user1.png' },
+            { name: 'User 17', page: 'Users/user17.html', image: 'Resources/user2.png' },
+            { name: 'User 18', page: 'Users/user18.html', image: 'Resources/user3.png' },
+            { name: 'User 19', page: 'Users/user19.html', image: 'Resources/user4.png' },
+            { name: 'User 20', page: 'Users/user20.html', image: 'Resources/user5.png' },
+        ];
+
+        var userList1 = document.getElementById('user-list-1');
+        var userList2 = document.getElementById('user-list-2');
+        var updateForm = $('#update-form');
+
+        users.forEach(function(user, index) {
+            var listItem = document.createElement('li');
+            var link = document.createElement('a');
+            var img = document.createElement('img');
+            img.src = user.image;
+            img.alt = user.name;
+            img.width = 50; // or any other size
+            link.textContent = user.name;
+            link.href = user.page;
+            listItem.appendChild(img);
+            listItem.appendChild(link);
+            if (index < 10) {
+                userList1.appendChild(listItem);
+            } else {
+                userList2.appendChild(listItem);
+            }
+        });
+
+        updateForm.on('submit', function(e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/submit-form',
+                data: formData,
+                success: function(response) {
+                    // Handle success...
+                    alert('Information updated successfully!');
+                },
+                error: function(error) {
+                    // Handle error...
+                    console.log(error);
+                    alert('An error occurred.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
